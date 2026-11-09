@@ -1,0 +1,93 @@
+{
+  "kind": "youtube#playlistListResponse",
+  "etag": "etag-list",
+  "items": [
+    {
+      "kind": "youtube#playlist",
+      "etag": "etag-pl-PLexample0000000000000000000000001",
+      "id": "PLexample0000000000000000000000001",
+      "snippet": {
+        "publishedAt": "2019-05-01T10:00:00Z",
+        "channelId": "UCexampleChannel00000001",
+        "title": "Open movies",
+        "description": "A playlist written by hand.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Example Channel",
+        "localized": {
+          "title": "Open movies",
+          "description": "A playlist written by hand."
+        }
+      },
+      "contentDetails": {
+        "itemCount": 12
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "etag-pl-PLexample0000000000000000000000002",
+      "id": "PLexample0000000000000000000000002",
+      "snippet": {
+        "publishedAt": "2019-05-01T10:00:00Z",
+        "channelId": "UCexampleChannel00000001",
+        "title": "Talks",
+        "description": "A playlist written by hand.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/aqz-KE-bpKQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Example Channel",
+        "localized": {
+          "title": "Talks",
+          "description": "A playlist written by hand."
+        }
+      },
+      "contentDetails": {
+        "itemCount": 3
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 2
+  },
+  "nextPageToken": "CAIQAA"
+}

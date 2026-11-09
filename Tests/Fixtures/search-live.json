@@ -1,0 +1,45 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "etag-list",
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "etag-s-liveStream1",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "liveStream1"
+      },
+      "snippet": {
+        "publishedAt": "2014-11-10T14:05:55Z",
+        "channelId": "UCexampleChannel00000001",
+        "title": "Live from the studio",
+        "description": "A short description.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/liveStream1/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/liveStream1/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/liveStream1/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Example Channel",
+        "liveBroadcastContent": "live",
+        "publishTime": "2014-11-10T14:05:55Z"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  },
+  "regionCode": "FR"
+}

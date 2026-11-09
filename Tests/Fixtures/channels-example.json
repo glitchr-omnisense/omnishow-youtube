@@ -1,0 +1,55 @@
+{
+  "kind": "youtube#channelListResponse",
+  "etag": "etag-list",
+  "items": [
+    {
+      "kind": "youtube#channel",
+      "etag": "etag-ch",
+      "id": "UCexampleChannel00000001",
+      "snippet": {
+        "title": "Example Channel",
+        "description": "A channel written by hand for the tests.",
+        "customUrl": "@example",
+        "publishedAt": "2008-02-27T16:54:02Z",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/example=s88",
+            "width": 88,
+            "height": 88
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/example=s240",
+            "width": 240,
+            "height": 240
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/example=s800",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "localized": {
+          "title": "Example Channel",
+          "description": "A channel written by hand for the tests."
+        },
+        "country": "NL"
+      },
+      "contentDetails": {
+        "relatedPlaylists": {
+          "likes": "",
+          "uploads": "UUexampleChannel00000001"
+        }
+      },
+      "statistics": {
+        "viewCount": "123456789",
+        "subscriberCount": "1230000",
+        "hiddenSubscriberCount": false,
+        "videoCount": "321"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  }
+}
