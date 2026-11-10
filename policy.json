@@ -18,7 +18,16 @@
             "window": "day",
             "scope": "application",
             "operations": [],
-            "note": "10,000 UNITS a day per project for every other method, not calls: videos.list, channels.list, playlists.list and playlistItems.list cost 1 unit each, and one operation spends one to several (channelVideos: channels.list, playlistItems.list, videos.list; live and schedule add channels.list and videos.list to search.list). Declared as 10,000 operations, an upper bound: the schema has no unit nor cost per operation yet."
+            "unit": "units",
+            "cost": {
+                "channelVideos": 3,
+                "live": 2,
+                "playlistVideos": 2,
+                "playlists": 2,
+                "schedule": 2,
+                "searchVideos": 0
+            },
+            "note": "10,000 units a day per project for every method but search.list (determine_quota_cost, read 2026-11-10: videos.list, channels.list, playlists.list and playlistItems.list cost 1 unit each; search.list has its own bucket, the limit above). An operation costs the units of the methods it makes, its channel looked up once per provider counted: channelVideos 3 (channels.list, playlistItems.list, videos.list), playlistVideos 2 (playlistItems.list, videos.list), playlists 2 (channels.list, playlists.list), live and schedule 2 (channels.list and videos.list, beside their search.list), searchVideos 0 (search.list only), video, videos, channel and playlist 1. videos() reads 50 videos a request: more is counted per 50 (MeasuresUsageInterface)."
         }
     ],
     "rights": {

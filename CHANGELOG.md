@@ -2,6 +2,15 @@
 
 ## Unreleased (1.x)
 
+### Changed
+- The 10,000 a day are counted in quota units (`"unit": "units"`), each operation costing the units
+  of the methods it makes (determine_quota_cost, read 2026-11-10): `channelVideos` 3,
+  `playlistVideos`, `playlists`, `live` and `schedule` 2, `searchVideos` 0 (search.list has its own
+  bucket, the 100 a day), the others 1; where they were declared as 10,000 operations.
+  `YoutubeProvider` implements omnishow's `Policy\MeasuresUsageInterface`: `videos()` counts one
+  unit per 50 videos. Needs omnisense/contracts at 5bac28b or later (`unit`, `cost`, `amounts`;
+  still `^1.0@dev`, untagged) and omnisense/omnishow's `MeasuresUsageInterface`.
+
 ### Added
 - YouTube's usage policy declared as data in `policy.json` (omnisense/contracts' schema, read on
   2026-11-10): 100 search.list calls a day (searchVideos, live, schedule), 10,000 units a day for

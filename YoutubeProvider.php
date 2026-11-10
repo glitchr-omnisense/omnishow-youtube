@@ -22,6 +22,7 @@ use Omnishow\Model\Video;
 use Omnishow\Model\VideoQuery;
 use Omnishow\Model\VideoRef;
 use Omnishow\PlaylistInterface;
+use Omnishow\Policy\MeasuresUsageInterface;
 use Omnishow\ProviderInterface;
 use Omnishow\VideoInterface;
 use Omnishow\VideoSearchInterface;
@@ -39,9 +40,10 @@ use Omnishow\VideoSearchInterface;
  *
  * Quota: each call costs a unit of the project's 10,000 a day, a search one
  * of its "Search Queries" bucket (100 a day by default); live() and
- * schedule() make one search each.
+ * schedule() make one search each. policy.json gives each operation's cost
+ * in units; usage() counts videos() per request of 50.
  */
-final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoSearchInterface, ChannelInterface, PlaylistInterface, LiveInterface, DeclaresUsagePolicyInterface
+final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoSearchInterface, ChannelInterface, PlaylistInterface, LiveInterface, DeclaresUsagePolicyInterface, MeasuresUsageInterface
 {
     /** YouTube's usage policy, as its terms read on the day it says (provenance.verifiedAt). */
     public const POLICY = __DIR__.'/policy.json';
@@ -87,6 +89,21 @@ final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoS
             platforms: [Platform::YouTube],
             policy: $this->usagePolicy(),
         );
+    }
+
+    /**
+     * videos() reads 50 videos a request (videos.list's id), a unit each:
+     * 120 videos are 3 units, where the policy's cost says 1.
+     */
+    public function usage(string $operation, array $arguments): array
+    {
+        $refs = $arguments[0] ?? null;
+        if ('videos' !== $operation || !\is_array($refs)) {
+            return [];
+        }
+        $ids = array_unique(array_map(static fn (mixed $ref): string => $ref instanceof VideoRef ? $ref->id : '', $refs));
+
+        return ['units' => (int) ceil(\count($ids) / 50)];
     }
 
     public function video(VideoRef $ref): ?Video

@@ -49,8 +49,9 @@ significant figures), `statistics.videoCount`, `snippet.country`.
 
 The package declares YouTube's usage policy as data, in [policy.json](../policy.json)
 (omnisense/contracts' schema, read at its sources on 2026-11-10): rate limits 100 search.list calls
-a day (searchVideos, live, schedule) and 10,000 units a day for every other method; the units are
-declared as 10,000 operations, an upper bound, since one operation may spend several units; data not
+a day (searchVideos, live, schedule) and 10,000 units a day for every other method, each operation
+costing the units of the methods it makes (`channelVideos` 3, `playlistVideos`, `playlists`, `live`
+and `schedule` 2, `searchVideos` 0, the others 1; `videos()` one per 50 videos); data not
 authorised by its owner kept 30 days at most, no redistribution, YouTube shown as the source with
 its brand features and a link to its Terms of Service, no ads in or on the player. Through
 omnishow's registry every call is held to it: the 101st search of a day is refused before it reaches
