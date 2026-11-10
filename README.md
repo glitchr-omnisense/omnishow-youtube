@@ -44,6 +44,20 @@ the answer.
 live contract reads public broadcasts through `search.list` instead. Live chat, comments, captions
 and uploading are out of the contract.
 
+## Usage policy
+
+The package declares YouTube's usage policy as data, in [policy.json](policy.json)
+(omnisense/contracts' schema, read at its sources on 2026-11-10): rate limits 100 search.list calls
+a day (searchVideos, live, schedule) and 10,000 units a day for every other method; the units are
+declared as 10,000 operations, an upper bound, since one operation may spend several units; data not
+authorised by its owner kept 30 days at most, no redistribution, YouTube shown as the source with
+its brand features and a link to its Terms of Service, no ads in or on the player. Through
+omnishow's registry every call is held to it: the 101st search of a day is refused before it reaches
+YouTube, a 429 and its `Retry-After` hold every next call until the wait is over
+(`UsageLimitReachedException`), and a site may tighten the policy in its configuration (`'policy' =>
+[...]`), never loosen it. What the terms do not say is declared unknown; the sources and the details
+are in the file's `provenance`.
+
 ## Responsibility
 
 This package is an independent, unofficial client: it is not affiliated with, endorsed by or

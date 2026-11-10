@@ -1,0 +1,58 @@
+{
+    "$schema": "https://github.com/glitchr-omnisense/contracts/blob/1.x/resources/usage-policy.schema.json",
+    "provider": "youtube",
+    "rateLimits": [
+        {
+            "max": 100,
+            "window": "day",
+            "scope": "application",
+            "operations": [
+                "searchVideos",
+                "live",
+                "schedule"
+            ],
+            "note": "search.list has its own default allocation of 100 calls a day per Google Cloud project (1 unit each, every page another call); searchVideos, live and schedule make one search.list call each. Quota resets at midnight Pacific time."
+        },
+        {
+            "max": 10000,
+            "window": "day",
+            "scope": "application",
+            "operations": [],
+            "note": "10,000 UNITS a day per project for every other method, not calls: videos.list, channels.list, playlists.list and playlistItems.list cost 1 unit each, and one operation spends one to several (channelVideos: channels.list, playlistItems.list, videos.list; live and schedule add channels.list and videos.list to search.list). Declared as 10,000 operations, an upper bound: the schema has no unit nor cost per operation yet."
+        }
+    ],
+    "rights": {
+        "commercial": "allowed",
+        "openSourceRequired": false,
+        "caching": {
+            "permission": "allowed",
+            "maxTtl": 2592000
+        },
+        "storage": "contract",
+        "redistribution": "forbidden",
+        "attribution": {
+            "required": true,
+            "text": "YouTube",
+            "url": "https://www.youtube.com/t/terms",
+            "where": [
+                "display"
+            ]
+        },
+        "licence": null
+    },
+    "requirements": {
+        "key": true,
+        "userAgent": {
+            "required": false,
+            "pattern": null
+        }
+    },
+    "provenance": {
+        "terms": "https://developers.google.com/youtube/terms/api-services-terms-of-service",
+        "policy": "https://developers.google.com/youtube/terms/developer-policies",
+        "verifiedAt": "2026-11-10",
+        "declaredBy": "maintainer",
+        "contact": null,
+        "notes": "Quota: developers.google.com/youtube/v3/determine_quota_cost (2026-11-03); more through Google's quota extension form and an API compliance audit. Developer policies (2026-11-06): data not authorised by its owner stored 30 calendar days at most, then deleted or refreshed (III.E.4); audiovisual content never stored without approval; selling API access or redistributing the API services is not allowed; ads within or on the player are not allowed, nor on a page whose only value is API data. Every page showing YouTube content makes YouTube clear as its source with YouTube's brand features, linked to YouTube (branding guidelines), links to YouTube's Terms of Service, and the application's privacy policy links to Google's. The application must not mimic YouTube's core experience. Commercial applications are allowed within these rules."
+    }
+}

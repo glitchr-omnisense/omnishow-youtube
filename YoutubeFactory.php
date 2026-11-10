@@ -33,6 +33,6 @@ final class YoutubeFactory extends ProviderFactory
 
     protected function build(Config $c): ProviderInterface
     {
-        return new YoutubeProvider(new JsonClient($this->http ?? HttpClient::create(['timeout' => 20]), 'YouTube', ['Accept' => 'application/json']), (string) $c->string('key'), (string) $c->string('api'), $c->string('language'));
+        return new YoutubeProvider(new JsonClient($this->http ?? HttpClient::create(['timeout' => 20]), 'YouTube', ['Accept' => 'application/json'], $c->backoff()), (string) $c->string('key'), (string) $c->string('api'), $c->string('language'));
     }
 }

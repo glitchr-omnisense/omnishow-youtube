@@ -2,6 +2,8 @@
 
 namespace Omnishow\Youtube;
 
+use Omnisense\Contracts\Policy\DeclaresUsagePolicyInterface;
+use Omnisense\Contracts\Policy\UsagePolicy;
 use Omnishow\Capabilities;
 use Omnishow\ChannelInterface;
 use Omnishow\Exception\NotSupportedException;
@@ -39,8 +41,13 @@ use Omnishow\VideoSearchInterface;
  * of its "Search Queries" bucket (100 a day by default); live() and
  * schedule() make one search each.
  */
-final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoSearchInterface, ChannelInterface, PlaylistInterface, LiveInterface
+final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoSearchInterface, ChannelInterface, PlaylistInterface, LiveInterface, DeclaresUsagePolicyInterface
 {
+    /** YouTube's usage policy, as its terms read on the day it says (provenance.verifiedAt). */
+    public const POLICY = __DIR__.'/policy.json';
+
+    private static ?UsagePolicy $policy = null;
+
     private const VIDEO_PARTS = 'snippet,contentDetails,statistics,status,liveStreamingDetails';
     private const CHANNEL = '~^UC[A-Za-z0-9_-]{22}$~';
 
@@ -61,6 +68,11 @@ final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoS
         return 'YouTube';
     }
 
+    public function usagePolicy(): UsagePolicy
+    {
+        return self::$policy ??= UsagePolicy::fromFile(self::POLICY);
+    }
+
     public function capabilities(): Capabilities
     {
         return new Capabilities(
@@ -73,6 +85,7 @@ final class YoutubeProvider implements ProviderInterface, VideoInterface, VideoS
             live: true,
             schedule: true,
             platforms: [Platform::YouTube],
+            policy: $this->usagePolicy(),
         );
     }
 
