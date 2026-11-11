@@ -35,7 +35,7 @@
         "openSourceRequired": false,
         "caching": {
             "permission": "allowed",
-            "maxTtl": 2592000
+            "maxTtl": null
         },
         "storage": "contract",
         "redistribution": "forbidden",
@@ -47,7 +47,11 @@
                 "display"
             ]
         },
-        "licence": null
+        "licence": null,
+        "retention": {
+            "maxAge": 2592000,
+            "covers": "API data other than authorized data: stored 30 calendar days at most, then deleted or refreshed (developer policies III.E.4)"
+        }
     },
     "requirements": {
         "key": true,
@@ -62,6 +66,6 @@
         "verifiedAt": "2026-11-10",
         "declaredBy": "maintainer",
         "contact": null,
-        "notes": "Quota: developers.google.com/youtube/v3/determine_quota_cost (2026-11-03); more through Google's quota extension form and an API compliance audit. Developer policies (2026-11-06): data not authorised by its owner stored 30 calendar days at most, then deleted or refreshed (III.E.4); audiovisual content never stored without approval; selling API access or redistributing the API services is not allowed; ads within or on the player are not allowed, nor on a page whose only value is API data. Every page showing YouTube content makes YouTube clear as its source with YouTube's brand features, linked to YouTube (branding guidelines), links to YouTube's Terms of Service, and the application's privacy policy links to Google's. The application must not mimic YouTube's core experience. Commercial applications are allowed within these rules."
+        "notes": "Quota: developers.google.com/youtube/v3/determine_quota_cost (2026-11-03); more through Google's quota extension form and an API compliance audit. Developer policies (2026-11-06): data not authorised by its owner stored 30 calendar days at most, then deleted or refreshed (III.E.4: rights.retention, which also bounds a cached answer from omnisense/contracts 9a96e22 on; caching.maxTtl sets no bound of its own); audiovisual content never stored without approval; selling API access or redistributing the API services is not allowed; ads within or on the player are not allowed, nor on a page whose only value is API data. Every page showing YouTube content makes YouTube clear as its source with YouTube's brand features, linked to YouTube (branding guidelines), links to YouTube's Terms of Service, and the application's privacy policy links to Google's. The application must not mimic YouTube's core experience. Commercial applications are allowed within these rules."
     }
 }

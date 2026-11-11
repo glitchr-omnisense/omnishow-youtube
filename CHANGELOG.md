@@ -3,6 +3,12 @@
 ## Unreleased (1.x)
 
 ### Changed
+- The 30 days are declared as `rights.retention` (`{"maxAge": 2592000, "covers": "API data other
+  than authorized data..."}`, the developer policies' III.E.4: stored 30 calendar days at most,
+  then deleted or refreshed), where they were `caching.maxTtl`; `caching.maxTtl` is now null.
+  omnisense/contracts reads the retention since 16c8da1, so the policy loads with 1568f2c (what
+  the sites' vendors hold); `PolicyGuard::cacheTtl()` is bounded by it from **9a96e22** on (with an
+  older kernel it no longer gives the 30 days: nothing in omnishow reads it).
 - The 10,000 a day are counted in quota units (`"unit": "units"`), each operation costing the units
   of the methods it makes (determine_quota_cost, read 2026-11-10): `channelVideos` 3,
   `playlistVideos`, `playlists`, `live` and `schedule` 2, `searchVideos` 0 (search.list has its own

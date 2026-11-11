@@ -33,7 +33,8 @@ final class PolicyTest extends TestCase
         self::assertSame(['100/day/application/live+schedule+searchVideos', '10000/day/application/*/units/channelVideos=3,live=2,playlistVideos=2,playlists=2,schedule=2,searchVideos=0'], array_map(static fn ($l) => $l->id(), $policy->rateLimits ?? []));
         self::assertCount(2, $policy->limitsFor('searchVideos'), 'a search counts in both');
         self::assertCount(1, $policy->limitsFor('video'));
-        self::assertSame(2592000, $policy->rights->caching->maxTtl, '30 days at most');
+        self::assertSame(2592000, $policy->rights->retention?->maxAge, 'data not authorised by its owner kept 30 days at most');
+        self::assertNull($policy->rights->caching->maxTtl, 'the 30 days are the retention\'s, which bounds a cached answer too');
     }
 
     public function testEachOperationCostsTheUnitsOfTheMethodsItMakes(): void
