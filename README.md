@@ -31,6 +31,17 @@ Options: `key` (required: an API key of a Google Cloud project with the YouTube 
 enabled), `language` (`hl`: titles and descriptions in this language where the owner translated
 them), `api` (`https://www.googleapis.com/youtube/v3/`). See [docs/index.md](docs/index.md).
 
+## Install
+
+```sh
+composer require omnishow/youtube
+```
+
+It requires `omnisense/omnishow` `^1.0`, installed with it. A real call needs: **a YouTube Data API
+key**. With no account, its tests run on recorded answers (a `MockHttpClient`), and
+[omnisense/omnishow](https://github.com/glitchr-omnisense/omnishow#install-and-a-first-call)'s
+README has a first call that runs without one.
+
 ## Quota
 
 Each call costs a unit of the project's 10,000 a day; since 2026-06-01 a search costs one unit of a
